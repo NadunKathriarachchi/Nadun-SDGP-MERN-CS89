@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 const port = 3000;
 
-const DBURL = 'mongodb+srv://User_Database:Kumal%4014@cluster0.gplvbuy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const DBURL = 'mongodb+srv://User_Database:kumal123@cluster0.gplvbuy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
 mongoose.connect(DBURL)
   .then(() =>{
