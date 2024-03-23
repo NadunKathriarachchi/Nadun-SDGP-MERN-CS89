@@ -4,8 +4,8 @@ const User = require("../models/user-model")
 const Bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
 const registerUser = asyncHandler(async(req,res)=>{
-    const {username,email,password} = req.body;
-    if(!username|| !email|| !password){
+    const {name,email,password,dateOfBirth,contactNo,address} = req.body;
+    if(!name|| !email|| !password){
         res.status(404).json({ message: "All fields are mandatory" });
         return;
     }
@@ -20,18 +20,24 @@ const registerUser = asyncHandler(async(req,res)=>{
     console.log("Hash Password :  ",hash);
 
     const user = await User.create({
-        username,
+        name,
         email,
-        password:hash
+        password:hash,
+        dateOfBirth,
+        contactNo,
+        address
     })
     if(user){
         res.status(201).json({
             _id:user._id,
-            username:user.username,
-            email:user.email
+            name:user.name,
+            email:user.email,
+            dateOfBirth:user.dateOfBirth,
+            contactNo:user.contactNo,
+            address:user.address
         })
     }else{
-        res.status(404).json({ message: "AInvalid User data" });
+        res.status(404).json({ message: "Invalid User data" });
         return;
     }
 
@@ -55,9 +61,12 @@ const loginUser = asyncHandler(async(req,res)=>{
         const accessToken = JWT.sign(
             {
                 user:{
-                    username:user.username,
+                    name:user.name,
                     email:user.email,
-                    id:user.id
+                    id:user.id,
+                    dateOfBirth:user.dateOfBirth,
+                    contactNo:user.contactNo,
+                    address:user.address
                 }
             },
             process.env.JWT_SECRET,
