@@ -12,8 +12,11 @@ app.use(express.json());
 
 const port = process.env.PORT || 5000;
 app.use(express.json());
+app.use("/api/organization",require("./routes/organization-routes"));
 app.use("/api/users",require("./routes/users-routes"));
-xapp.use(errorHandler);
+app.use("/api/volunteer",require("./routes/volunteer-routes"));
+app.use("/api/category",require("./routes/category-routes"));
+app.use(errorHandler);
 
 app.listen(port,()=>{
     console.log(`Server is running on port : ${port}`);
