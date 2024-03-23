@@ -12,7 +12,8 @@ const getAllCategories = asyncHandler(async(req,res)=>{
 const createCategory = asyncHandler(async (req, res) => {
     const {
         main_category,
-        sub_categories
+        sub_categories,
+        skill_set
         
     } = req.body;
     
@@ -27,7 +28,8 @@ const createCategory = asyncHandler(async (req, res) => {
  
     const category = await Category.create({
         main_category,
-        sub_categories
+        sub_categories,
+        skill_set
     });
 
     res.status(200).json({ message: "Category created successfully.", category });

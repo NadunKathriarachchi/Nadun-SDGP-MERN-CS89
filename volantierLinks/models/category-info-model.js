@@ -6,8 +6,12 @@ const categorySchema = mongoose.Schema({
         required: [true, "Please add main category"]
     },
     sub_categories: {
-        type: [String],
+        type: String,
         required: [true, "Please add sub categories"]
+    },
+    skill_set: {
+        type: [String],
+        required: [true, "Please add skill set"]
     }
 })
 
